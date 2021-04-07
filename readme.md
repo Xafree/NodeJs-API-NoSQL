@@ -2,7 +2,7 @@
 ### Auteur : EBERST Emmanuel et Dorian SONZOGNI
 
 ## 1. API Back end
-*Charger de developpement back-end :  Eberst Emmanuel*
+*Charger de developpement back-end :  Eberst Emmanuel*<br />
 *Charger de developpement front-end :  Dorian SONZOGNI*
 
 Nous avons utilisé une base de données en mongodb, les requêtes effectuées dans cette API sont en NoSQL
