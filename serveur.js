@@ -30,7 +30,13 @@ MongoClient.connect(url, { useUnifiedTopology: true })
 
         //Get by Author
         app.get('/api/citation/auteur/:auteur', (req, res) => {
-            citationCollection.find({"Auteur" : req.params.auteur}).toArray()
+            let auteur = req.params.auteur;
+
+            if( auteur == null){
+                res.send("Impossible d'exécuter la requete avec un opérateur null");
+            }
+
+            citationCollection.find({"Auteur" :auteur }).toArray()
                 .then(results => {
                     console.log(results);
                     res.send(results);
@@ -39,7 +45,13 @@ MongoClient.connect(url, { useUnifiedTopology: true })
 
         //Get by character citation
         app.get('/api/citation/character/:character', (req, res) => {
-            citationCollection.find({"citations" : {'$regex': '.*'+req.params.character+'.*'}}).toArray()
+            let character = req.params.character;
+
+            if( character == null){
+                res.send("Impossible d'exécuter la requete avec un opérateur null");
+            }
+
+            citationCollection.find({"citations" : {'$regex': '.*'+character+'.*'}}).toArray()
                 .then(results => {
                     console.log(results);
                     res.send(results);
@@ -50,6 +62,11 @@ MongoClient.connect(url, { useUnifiedTopology: true })
         app.get('/api/citation/search/:auteur&:character', (req, res) => {
             let auteur = req.params.auteur;
             let character = req.params.character;
+
+            if( auteur == 0 || auteur == 0 ){
+                res.send("Impossible d'exécuter la requete avec un opérateur null");
+            }
+
             citationCollection.find({
                                         "Auteur": auteur,
                                         "citations" : {'$regex': '.*'+character+'.*'}
@@ -62,6 +79,10 @@ MongoClient.connect(url, { useUnifiedTopology: true })
 
         //Post Citation
         app.post('/api/citation/:email',(req, res) => {
+            let email = req.params.email;
+            if( email == null){
+                res.send("Impossible d'exécuter la requete avec un opérateur null");
+            }
             let _id = short.generate();
             citationCollection.insertOne({
                 "_id": _id,
@@ -77,7 +98,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
                     "citation_poster": _id,
                 }
             }
-            auteurCollection.updateOne({"email": req.params.email },item,{ upsert: true }).then(results =>{
+            auteurCollection.updateOne({"email": email },item,{ upsert: true }).then(results =>{
                 console.log(results.status);
                 res.send(results);
             }).catch(error => console.error(error));
@@ -88,6 +109,11 @@ MongoClient.connect(url, { useUnifiedTopology: true })
         //Delete citation By ID  exemple : ObjectId("604a39a6e9698f438cf32f47")
         app.delete('/api/citation/delete/:id',(req, res) => {
             let id = req.params.id;
+
+            if( id == null ){
+                res.send("Impossible d'exécuter la requete avec un opérateur null");
+            }
+
             citationCollection.deleteOne({ "_id": id });
 
             let item ={
@@ -106,6 +132,11 @@ MongoClient.connect(url, { useUnifiedTopology: true })
         //Update Citation By ID
         app.put('/api/citation/update/:id',(req, res) => {
             let id = req.params.id;
+
+            if ( id == null ){
+                res.send("Impossible d'exécuter la requete avec un opérateur null");
+            }
+
             let newValue = {$set : {
                     "Auteur": req.body.Auteur,
                     "citations": req.body.citations,
@@ -138,14 +169,23 @@ MongoClient.connect(url, { useUnifiedTopology: true })
         //Post Editeur add favoris
         app.put('/api/editeur/addFav/:email&:idCitations',(req, res) => {
 
+            let idCitations = req.params.idCitations;
+            let email = req.params.email;
+
+
+            if ( idCitations == null || email == null ){
+                res.send("Impossible d'exécuter la requete avec un opérateur null");
+
+            }
+
             let item = {
                 $push :{
-                    "favoris": req.params.idCitations,
+                    "favoris": idCitations,
                 }
             }
 
-            auteurCollection.updateOne({"email": req.params.email },item,{ upsert: true });
-            citationCollection.updateOne({"_id": req.params.idCitations},{$inc : {"favNumber":1}}).then(results =>{
+            auteurCollection.updateOne({"email": email },item,{ upsert: true });
+            citationCollection.updateOne({"_id": idCitations},{$inc : {"favNumber":1}}).then(results =>{
                 console.log(results);
                 res.send(results);
             }).catch(error => console.error(error));
@@ -154,6 +194,11 @@ MongoClient.connect(url, { useUnifiedTopology: true })
 
         //Get Editeur
         app.get('/api/editeur/users/:email',(req, res) => {
+
+            let email = req.params.email;
+            if( email == null){
+                res.send("Impossible d'exécuter la requete avec un opérateur null");
+            }
             auteurCollection.find({"email": req.params.email }).toArray().then(results =>{
                 console.log(results.status);
                 res.send(results);
