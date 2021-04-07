@@ -1,0 +1,396 @@
+{
+	"info": {
+		"_postman_id": "408e8790-0e83-4a19-b317-1e5b892bf81a",
+		"name": "Citation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "citations",
+			"item": [
+				{
+					"name": "Get all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/citations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"citations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by author",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/citations-auteur/albert Einstein",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"citations-auteur",
+								"albert Einstein"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post 1 citation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"Auteur\": \"Emmmanuel\",\r\n    \"citations\": \" Oui moi président\",\r\n    \"oeuvre\": \"Moi président\",\r\n    \"date\": \"2015\",\r\n    \"langue\": \"francais\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/citation/test3@test.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"citation",
+								"test3@test.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete 1 citation",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/citation/delete/3fATBYCgEtJWKDyJrFUKPH",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"citation",
+								"delete",
+								"3fATBYCgEtJWKDyJrFUKPH"
+							],
+							"query": [
+								{
+									"key": "identifiant",
+									"value": "604a3cee15eb7822302d0635",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update citation",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Auteur\" : \"Redabricot - Youtube\",\r\n    \"citations\" : \"j'attend que la femme elle rentre pour quelle fasse la vaiselle\",\r\n    \"oeuvre\" : \"J'aime bien fouetter\",\r\n    \"date\" : \"2019\",\r\n    \"langue\" : \"francais\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/citation/update/604a3cee15eb7822302d0635",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"citation",
+								"update",
+								"604a3cee15eb7822302d0635"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search by character",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/citation/character/vie",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"citation",
+								"character",
+								"vie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seardch by author and character",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/citation/search/Albert Einstein&moyens",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"citation",
+								"search",
+								"Albert Einstein&moyens"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auteur",
+			"item": [
+				{
+					"name": "add editeur",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom\" : \"test3\",\r\n    \"email\" : \"test3@test.com\",\r\n    \"mot_de_passe\" : \"root4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/editeur/create/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"editeur",
+								"create",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add favoris",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/editeur/addFav/test2@test.com&v8KsuxSFXSGbr1EUHpYcxv",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"editeur",
+								"addFav",
+								"test2@test.com&v8KsuxSFXSGbr1EUHpYcxv"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get editeur",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/editeur/users/test2@test.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"editeur",
+								"users",
+								"test2@test.com"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "statistic",
+			"item": [
+				{
+					"name": "the best editeur",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/editeur/bestusers/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"editeur",
+								"bestusers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unknow users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/editeur/unknowEditeur/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"editeur",
+								"unknowEditeur",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3 favorit citations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/editeur/bestCitationFav/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"editeur",
+								"bestCitationFav",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "unknow auteur citation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/editeur/unknowEditeur/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"editeur",
+								"unknowEditeur",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Auteur citation le plus en fav",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/editeur/bestEditeurCitationFav/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"editeur",
+								"bestEditeurCitationFav",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

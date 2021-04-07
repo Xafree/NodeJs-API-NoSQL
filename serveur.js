@@ -209,7 +209,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
         //----------------------------------------------- requete de statistique ------------------------------------------------------------------------//
 
         // La personne avec le plus de citation
-        app.get('/api/editeur/bestUsers/',(req, res) => {
+        app.get('/api/statistique/bestUsers/',(req, res) => {
             auteurCollection.find({"citation_poster":{$ne:null}}).limit(1).sort({"citation_poster": -1}).toArray().then(results =>{
                 console.log(results.status);
                 res.send(results);
@@ -218,7 +218,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
         });
 
         // Le nombre de citation sans auteur
-        app.get('/api/editeur/unknowEditeur/',(req, res) => {
+        app.get('/api/statistique/unknowEditeur/',(req, res) => {
             citationCollection.aggregate(
                 [
                     { $match: { Auteur: { $eq: null } } },
@@ -236,7 +236,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
 
         });
 
-        app.get('/api/editeur/bestCitationFav/',(req, res) => {
+        app.get('/api/statistique/bestCitationFav/',(req, res) => {
             citationCollection.find({"favNumber":{$ne:null}}).limit(3).sort({"favNumber": -1}).toArray().then(results =>{
                 console.log(results.status);
                 res.send(results);
@@ -244,7 +244,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
 
         });
 
-        app.get('/api/editeur/bestEditeurCitationFav/',(req, res) => {
+        app.get('/api/statistique/bestEditeurCitationFav/',(req, res) => {
             citationCollection.aggregate([
                 {$match: {}},
                 {$group: {_id: "$Auteur", total_fav : {$sum : "$favNumber"}}},
